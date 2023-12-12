@@ -16,7 +16,12 @@ export const okReadsConstant = {
     },
     READING_LIST: {
         REMOVE_CIRCLE: 'remove_circle',
-        EMPTY_LIST_TEXT: "You haven't added any books to your reading list yet."
+        EMPTY_LIST_TEXT: "You haven't added any books to your reading list yet.",
+        ADDED: 'Added \"',
+        TO_READING_LIST: '\" to the reading list',
+        UNDO: 'Undo',
+        REMOVED: 'Removed \"',
+        FROM_READING_LIST: '\" from the reading list'
     },
     API: {
         BOOKS_SEARCH_API: '/api/books/search?q=',
