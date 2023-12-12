@@ -4,9 +4,10 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpTestingController } from '@angular/common/http/testing';
 
-import { SharedTestingModule } from '@tmo/shared/testing';
+import { SharedTestingModule, createReadingListItem } from '@tmo/shared/testing';
 import { ReadingListEffects } from './reading-list.effects';
 import * as ReadingListActions from './reading-list.actions';
+import { ReadingListItem, okReadsConstant } from '@tmo/shared/models';
 
 describe('ToReadEffects', () => {
   let actions: ReplaySubject<any>;
@@ -39,7 +40,46 @@ describe('ToReadEffects', () => {
         done();
       });
 
-      httpMock.expectOne('/api/reading-list').flush([]);
+      httpMock.expectOne(`${okReadsConstant.API.READING_LIST_API}`).flush([]);
+    });
+  });
+
+  describe('markBookAsFinished$', () => {
+    let item: ReadingListItem;
+    let finishedDate: string;
+
+    beforeAll(() => {
+      item = createReadingListItem('A');
+      finishedDate = new Date().toISOString();
+    });
+
+    it('it should successfully add a book to the reading list', done => {
+      actions = new ReplaySubject();
+      actions.next(ReadingListActions.init());
+
+      effects.loadReadingList$.subscribe(action => {
+        expect(action).toEqual(
+          ReadingListActions.loadReadingListSuccess({ list: [] })
+        );
+        done();
+      });
+
+      httpMock.expectOne(`${okReadsConstant.API.READING_LIST_API}`).flush([]);
+    });
+
+    it('it should remove the added book, when the API returns an error,', (done) => {
+      actions.next(ReadingListActions.markBookAsFinished({ item: item, finishedDate }));
+
+      effects.markBookAsFinished$.subscribe((action) => {
+        expect(action).toEqual(
+          ReadingListActions.failedMarkBookAsFinished({ item: item })
+        );
+        done();
+      });
+
+      httpMock
+        .expectOne(`${okReadsConstant.API.READING_LIST_API}/${item.bookId}/${okReadsConstant.API.FINISHED}`)
+        .flush({}, { status: 500, statusText: 'server error' });
     });
   });
 });

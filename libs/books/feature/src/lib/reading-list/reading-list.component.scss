@@ -33,7 +33,7 @@
   margin-right: $spacing-xxs;
 }
 
-.reading-list-item--details-title,
+.reading-list-item-details-title,
 .reading-list-item-details-author {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -44,4 +44,15 @@
   font-weight: 100;
   font-size: 1rem;
   color: $gray60;
+}
+
+.reading-list-item-finished-text {
+  margin-top: $spacing-3xs;
+}
+
+.reading-list-item-finished-text,
+.mark-finish-circle {
+  color: $green;
+  width: 20%;
+  padding-bottom: $spacing-3xs;
 }

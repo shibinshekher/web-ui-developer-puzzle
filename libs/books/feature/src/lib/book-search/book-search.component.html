@@ -36,8 +36,9 @@
               color="primary"
               (click)="addBookToReadingList(book)"
               [disabled]="book.isAdded"
+              data-testing="add-book-button"
             >
-            {{ bookSearchConstants.BOOK_SEARCH.WANT_TO_READ }}
+            {{ book.finished ? bookSearchConstants.BOOK_SEARCH.FINISHED : bookSearchConstants.BOOK_SEARCH.WANT_TO_READ }}
             </button>
           </div>
         </div>
