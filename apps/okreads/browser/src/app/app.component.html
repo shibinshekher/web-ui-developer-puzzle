@@ -25,7 +25,7 @@
     <div class="reading-list-container" data-testing="reading-list-container">
       <h2>
         {{ appConstants.MY_READING_LIST }}
-        <button mat-icon-button aria-label="Close reading list" (click)="drawer.close()">
+        <button mat-icon-button aria-label="Close reading list" (click)="drawer.close()" data-testing="close-reading-list">
           <mat-icon>{{ appConstants.CLOSE }}</mat-icon>
         </button>
       </h2>

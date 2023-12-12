@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState, Update } from '@ngrx/entity';
 
 import * as ReadingListActions from './reading-list.actions';
 import { ReadingListItem } from '@tmo/shared/models';
@@ -64,6 +64,26 @@ const readingListReducer = createReducer(
       ...state,
       error: action.error
     };
+  }),
+  on(ReadingListActions.markBookAsFinished, (state, action) => {
+    const updatedItem: Update<ReadingListItem> = {
+      id: action.item.bookId,
+      changes: {
+        finished: true,
+        finishedDate: action.finishedDate
+      }
+    };
+    return readingListAdapter.updateOne(updatedItem, state);
+  }),
+  on(ReadingListActions.failedMarkBookAsFinished, (state, action) => {
+    const updatedItem: Update<ReadingListItem> = {
+      id: action.item.bookId,
+      changes: {
+        finished: false,
+        finishedDate: ''
+      }
+    }
+    return readingListAdapter.updateOne(updatedItem, state);
   })
 );
 

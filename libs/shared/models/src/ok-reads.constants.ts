@@ -12,15 +12,18 @@ export const okReadsConstant = {
         NO_PUBLISHER_MENTIONED: 'Publisher not avaliable',
         NO_DATE_MENTIONED: 'Date not avaliable',
         NO_DESCRIPTION_MENTIONED: 'Description not avaliable',
-        DATE_FORMAT: 'dd/MM/yyyy'
+        DATE_FORMAT: 'dd/MM/yyyy',
+        FINISHED: "Finished",
     },
     READING_LIST: {
         REMOVE_CIRCLE: 'remove_circle',
-        EMPTY_LIST_TEXT: "You haven't added any books to your reading list yet."
+        EMPTY_LIST_TEXT: "You haven't added any books to your reading list yet.",
+        FINISHED_ON: "Finished on"
     },
     API: {
         BOOKS_SEARCH_API: '/api/books/search?q=',
-        READING_LIST_API: '/api/reading-list'
+        READING_LIST_API: '/api/reading-list',
+        FINISHED: 'finished'
     },
     TITLE: 'okreads',
     READING_LIST_TEXT: 'Reading List',
