@@ -23,7 +23,7 @@ h1 {
   }
 }
 
-.header--content {
+.header-content {
   display: flex;
 
   > * {
@@ -64,4 +64,9 @@ main {
 
 .reading-list-content {
   padding: $spacing-xxs;
+}
+
+.header-button-reading-list {
+  color: $white;
+  background-color: $gray80;
 }
